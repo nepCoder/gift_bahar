@@ -16,29 +16,31 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: const Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.card_giftcard,
-                size: 64.0,
-                color: accentColor,
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              Text(
-                'Signup to GiftBahar',
-                style: TextStyle(
-                    color: accentColor,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 16.0,
-              ),
-              SignupForm(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.card_giftcard,
+                  size: 64.0,
+                  color: accentColor,
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  'Signup to GiftBahar',
+                  style: TextStyle(
+                      color: accentColor,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                SignupForm(),
+              ],
+            ),
           ),
         ),
       ),

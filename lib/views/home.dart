@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:gift_bahar/controller/login_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Text('Welcome to Gift Bahar!'),
               ElevatedButton(
                   onPressed: () {
-                    logoutUser(context);
+                    Get.find<AuthController>().logout();
                   },
                   child: const Text('LOGOUT')),
             ],

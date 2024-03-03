@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:gift_bahar/controller/login_controller.dart';
 import 'package:http/http.dart' as http;
 
 class LoginForm extends StatefulWidget {
@@ -16,46 +18,21 @@ class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final controller = Get.find<AuthController>();
 
   Future<void> loginUser() async {
-    const String apiUrl = 'http://10.0.2.2:5062/login';
-
-    final Map<String, dynamic> data = {
-      'email': emailController.text,
-      'password': passwordController.text,
-    };
-
-    const storage = FlutterSecureStorage();
-
-    try {
-      final http.Response response = await http.post(
-        Uri.parse(apiUrl),
-        body: jsonEncode(data),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        var responseData = jsonDecode(response.body);
-        if(responseData != null){
-          await storage.write(key: 'tokenType', value: responseData['tokenType']);
-          await storage.write(key: 'accessToken', value: responseData['accessToken']);
-          await storage.write(key: 'authenticated', value: 'true');
-          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-        }
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Invalid email or password.', style: TextStyle(color: Colors.red), textAlign: TextAlign.center,),
-          backgroundColor: Colors.white,
-          closeIconColor: Colors.red,
+  
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Invalid email or password.',
+          style: TextStyle(color: Colors.red),
+          textAlign: TextAlign.center,
         ),
-      );
-      }
-    } catch (e) {
-      print(e);
-    }
+        backgroundColor: Colors.white,
+        closeIconColor: Colors.red,
+      ),
+    );
   }
 
   @override
@@ -114,7 +91,11 @@ class _LoginFormState extends State<LoginForm> {
               ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState?.validate() ?? false) {
-                    loginUser();
+                    final param = {
+                      'email': emailController.text,
+                      'password': passwordController.text,
+                    };
+                    controller.login(param);
                   }
                 },
                 child: const Text('LOGIN'),
@@ -137,7 +118,7 @@ class _LoginFormState extends State<LoginForm> {
                           fontSize: 16.0),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          Navigator.pushNamed(context, '/signup');
+                          Get.toNamed('/signup');
                         }),
                 ],
               ))
