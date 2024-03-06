@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:gift_bahar/controller/login_controller.dart';
 import 'package:gift_bahar/views/home.dart';
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
               initialRoute: authenticated ? '/home' : '/login',
               defaultTransition: Transition.circularReveal,
-              transitionDuration: Duration(seconds: 5),
+              transitionDuration: const Duration(seconds: 5),
               routes: {
                 '/login': (context) => const LoginScreen(),
                 '/signup': (context) => const SignupScreen(),
