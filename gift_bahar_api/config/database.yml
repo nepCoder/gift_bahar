@@ -21,7 +21,9 @@ default: &default
 
 development:
   <<: *default
-  database: gift_bahar_api_development
+  database: giftbahar
+  username: bikash 
+  password: khanal123
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
