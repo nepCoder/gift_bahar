@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gift_bahar/controller/login_controller.dart';
+import 'package:gift_bahar/controller/auth_controller.dart';
+import 'package:gift_bahar/core/const/constants.dart';
 import 'package:gift_bahar/views/home.dart';
 import 'package:gift_bahar/views/login.dart';
 import 'package:gift_bahar/views/signup.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
               routes: {
                 '/login': (context) => const LoginScreen(),
                 '/signup': (context) => const SignupScreen(),
-                '/home': (context) => const HomeScreen(title: 'Home'),
+                '/home': (context) => const HomeScreen(title: appName ),
               },
               title: 'Gift Bahar',
               debugShowCheckedModeBanner: false,

@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gift_bahar/controller/login_controller.dart';
+import 'package:gift_bahar/controller/auth_controller.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
